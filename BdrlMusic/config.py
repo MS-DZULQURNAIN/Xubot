@@ -5,7 +5,7 @@ API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 SESSION_STRING = os.getenv("SESSION_STRING")
 MONGO_URL = os.getenv("MONGO_URL")
-OWNER_ID = list(map(int, os.getenv("OWNER_ID", "id_1 id_2 dan_seterusnya").split()))
+OWNER_ID = list(map(int, os.getenv("OWNER_ID", "").split()))
 SUDO_USERS = list(map(int, os.getenv("SUDO_USERS", "").split()))
 PREFIXES = [
     "°",
