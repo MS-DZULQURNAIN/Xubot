@@ -47,7 +47,7 @@ class Ubot(Client):
         return decorator
 
     def pytgcalls_decorator(self):
-        def decorator(func: Callable) -> Callable:
+        def decorator(func):
             for ub in self._ubot:
                 if func.__name__ != "stream_end":
                     ub.call_py.on_kicked()(func)
