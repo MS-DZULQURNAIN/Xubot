@@ -12,8 +12,8 @@ from BdrlMusic.config import OWNER_ID
 from BdrlMusic.modules import loadModule
 from BdrlMusic.utils.dbfunctions import *
 
-
 LOGS_MAKER_UBOT = "username_logs"
+
 
 @bot.on_message(filters.command("add_ubot") & filters.private)
 async def _(_, message: Message):
@@ -134,6 +134,7 @@ async def _(_, message: Message):
         reply_markup=InlineKeyboardMarkup(buttons),
         disable_web_page_preview=True,
     )
+
 
 @bot.on_message(filters.command("get_ubot") & filters.private)
 async def _(_, message: Message):
