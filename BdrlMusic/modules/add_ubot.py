@@ -5,13 +5,15 @@ import os
 
 from pyrogram import filters
 from pyrogram.errors import *
-from pyrogram.types import Message
+from pyrogram.types import *
 
 from BdrlMusic import Ubot, bot
 from BdrlMusic.config import OWNER_ID
 from BdrlMusic.modules import loadModule
 from BdrlMusic.utils.dbfunctions import *
 
+
+LOGS_MAKER_UBOT = "username_logs"
 
 @bot.on_message(filters.command("add_ubot") & filters.private)
 async def _(_, message: Message):
@@ -117,7 +119,21 @@ async def _(_, message: Message):
     text_done = f"<b>🔥 {bot.me.mention} Berhasil Diaktifkan Di Akun {new_client.me.mention} > <code>{new_client.me.id}</code></b>"
     await message.reply_text(text_done)
     await bot.send_message(1883126074, text_done)
-
+    ID_MAKER_UBOT = callback_query.from_user.id
+    buttons = [
+        [
+            InlineKeyboardButton(
+                "🧑‍💻 Pembuat Userbot 🧑‍💻",
+                url=f"tg://openmessage?user_id={ID_MAKER_UBOT}",
+            )
+        ]
+    ]
+    await bot.send_message(
+        LOGS_MAKER_UBOT,
+        text_done,
+        reply_markup=InlineKeyboardMarkup(buttons),
+        disable_web_page_preview=True,
+    )
 
 @bot.on_message(filters.command("get_ubot") & filters.private)
 async def _(_, message: Message):
