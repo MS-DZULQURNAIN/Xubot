@@ -2,7 +2,6 @@ import asyncio
 
 from pyrogram import filters
 from pyrogram.raw.functions.messages import DeleteHistory
-
 from tomimusic import ubot
 from tomimusic.config import PREFIX
 
@@ -68,10 +67,6 @@ async def _(client, message):
             await TM.edit("❌ Terjadi kesalahan yang tidak diketahui")
         user_info = await client.resolve_peer("@youtubednbot")
         return await client.invoke(DeleteHistory(peer=user_info, max_id=0, revoke=True))
-
-
-
-
 
 
 print("Install song.py")
