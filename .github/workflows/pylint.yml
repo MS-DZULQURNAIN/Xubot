@@ -8,8 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
  
-      - name: Setup Python
-        uses: actions/setup-python@v1
+      - name: Git Auto Commit
+        uses: stefanzweifel/git-auto-commit-action@v4.16.0
         with:
           python-version: 3.9
  
