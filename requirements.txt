@@ -6,10 +6,10 @@ motor
 dnspython
 pykeyboard
 requests
-rich
+rich==3.2.0
 unidecode
 attrify
-pyromod
+pyromod==1.1.0
 pillow
 html2text
 youtube-search-python
