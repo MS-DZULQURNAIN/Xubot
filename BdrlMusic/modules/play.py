@@ -10,7 +10,8 @@ from pyrogram.raw.functions.phone import CreateGroupCall
 from pyrogram.types import *
 from pytgcalls import StreamType
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from pytgcalls.types.input_stream.quality import HighQualityAudio, HighQualityVideo
+from pytgcalls.types.input_stream.quality import (HighQualityAudio,
+                                                  HighQualityVideo)
 from yt_dlp import YoutubeDL
 
 from BdrlMusic import bot, ubot

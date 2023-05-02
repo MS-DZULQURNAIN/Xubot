@@ -5,12 +5,8 @@ from time import time
 
 from pyrogram import filters
 from pyrogram.errors import MessageDeleteForbidden, QueryIdInvalid
-from pyrogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message,
-)
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, Message)
 from youtubesearchpython import VideosSearch
 
 from BdrlMusic import bot, ubot
