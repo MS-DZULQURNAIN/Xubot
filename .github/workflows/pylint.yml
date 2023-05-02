@@ -1,36 +1,22 @@
-name: CyberXGithub
- 
-on: [push, pull_request]
- 
+name: Auto Fix
+on: [push]
 jobs:
-  PEP8:
+  auto_fix_by_tomi_setiawan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
- 
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v4.16.0
-        with:
-          python-version: 3.9
- 
-      - name: Install Python lint libraries
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+      - name: Install Dependencies
         run: |
-          pip install autopep8 autoflake isort black
-      - name: Check for showstoppers
+          pip install --upgrade pip
+          pip install black isort
+      - name: Auto Fix
         run: |
-          autopep8 --verbose --in-place --recursive --aggressive --aggressive --ignore=W605. *.py
-      - name: Remove unused imports and variables
-        run: |
-          autoflake --in-place --recursive --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports .
-      - name: lint with isort and black
-        run: |
-          isort .
           black .
-      - uses: stefanzweifel/git-auto-commit-action@v4.16.0
+          isort .
+      - name: Code Analysis
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: '`Automatic Correction`'
-          commit_options: '--no-verify'
-          repository: .
-          commit_user_name: CyberXGithub
-          commit_user_email: 96681219+CyberXGithub@users.noreply.github.com
-          commit_author: CyberXGithub <96681219+CyberXGithub@users.noreply.github.com>
+          commit_message: "Auto Fix"
