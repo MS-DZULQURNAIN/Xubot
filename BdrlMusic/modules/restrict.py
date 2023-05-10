@@ -17,8 +17,6 @@ mute_permission = ChatPermissions(
     can_invite_users=True,
     can_pin_messages=False,
 )
-
-
 # Unmute permissions
 unmute_permissions = ChatPermissions(
     can_send_messages=True,

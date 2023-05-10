@@ -4,8 +4,6 @@ from BdrlMusic.config import MONGO_URL
 
 mongo_client = AsyncIOMotorClient(MONGO_URL)
 mongodb = mongo_client.ubotmusik
-
-
 ubotdb = mongodb.ubot
 
 

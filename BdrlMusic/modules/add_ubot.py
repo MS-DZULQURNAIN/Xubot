@@ -61,7 +61,6 @@ async def _(_, message: Message):
             ),
             timeout=300,
         )
-
     except asyncio.TimeoutError:
         return await message.reply_text(
             "Batas waktu tercapai 5 menit. Proses Dibatalkan."

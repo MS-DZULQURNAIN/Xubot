@@ -30,13 +30,11 @@ async def check_perms(message, permissions):
         await message.reply_text(
             f"""
 <b>🙏🏻 Mohon maaf {message.from_user.mention} anda bukan admin dari group {message.chat.title}
-
 ✅ Untuk menggunakan perintah <code>{message.text.split()[0]}</code> harus menjadi admin terlebih dahulqu</b>
 """,
             quote=False,
         )
         return False
-
     missing_perms = [
         permission
         for permission in (
@@ -44,7 +42,6 @@ async def check_perms(message, permissions):
         )
         if not getattr(user.privileges, permission)
     ]
-
     if not missing_perms:
         return True
     await message.reply_text(

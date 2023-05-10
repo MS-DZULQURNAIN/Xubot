@@ -28,7 +28,6 @@ class YouTubeSearch:
         end = response.index("};", start) + 1
         json_str = response[start:end]
         data = loads(json_str)
-
         for contents in data["contents"]["twoColumnSearchResultsRenderer"][
             "primaryContents"
         ]["sectionListRenderer"]["contents"]:
@@ -66,7 +65,6 @@ class YouTubeSearch:
                         < 7200
                     ):
                         results.append(res)
-
             if results:
                 return results
         return results

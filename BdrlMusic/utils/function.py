@@ -9,7 +9,6 @@ def extract_user(message: Message) -> Tuple[int, str, Union[Chat, User]]:
     user_id = None
     user_first_name = None
     aviyal = None
-
     if len(message.command) > 1:
         if (
             len(message.entities) > 1
@@ -26,18 +25,14 @@ def extract_user(message: Message) -> Tuple[int, str, Union[Chat, User]]:
             # don't want to make a request -_-
             user_first_name = user_id
             aviyal = True
-
         try:
             user_id = int(user_id)
         except ValueError:
             print("പൊട്ടൻ ")
-
     elif message.reply_to_message:
         user_id, user_first_name, aviyal = _eufm(message.reply_to_message)
-
     elif message:
         user_id, user_first_name, aviyal = _eufm(message)
-
     return (user_id, user_first_name, aviyal)
 
 
@@ -45,15 +40,12 @@ def _eufm(message: Message) -> Tuple[int, str, Union[Chat, User]]:
     user_id = None
     user_first_name = None
     ithuenthoothengaa = None
-
     if message.from_user:
         ithuenthoothengaa = message.from_user
         user_id = ithuenthoothengaa.id
         user_first_name = ithuenthoothengaa.first_name
-
     elif message.sender_chat:
         ithuenthoothengaa = message.sender_chat
         user_id = ithuenthoothengaa.id
         user_first_name = ithuenthoothengaa.title
-
     return (user_id, user_first_name, ithuenthoothengaa)

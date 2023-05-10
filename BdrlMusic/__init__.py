@@ -20,7 +20,6 @@ console = StreamHandler()
 console.setLevel(ERROR)
 console.setFormatter(Formatter("%(filename)s:%(lineno)s %(levelname)s: %(message)s"))
 getLogger("").addHandler(console)
-
 bot = Client(
     name="BdrlMusicubot",
     api_id=API_ID,

@@ -1,25 +1,19 @@
 import os
 import re
 import textwrap
-
 import aiofiles
 import aiohttp
 from PIL import *
 from youtubesearchpython import VideosSearch
-
 YOUTUBE_IMG_URL = os.getenv(
     "https://telegra.ph/file/16137a6bbfa67a7198ad9.jpg",
 )
-
-
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
     heightRatio = maxHeight / image.size[1]
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
     return image.resize((newWidth, newHeight))
-
-
 async def gen_thumb(foto, status):
     url = f"https://youtu.be/{foto}"
     try:
@@ -44,13 +38,11 @@ async def gen_thumb(foto, status):
                 channel = result["channel"]["name"]
             except:
                 channel = "Unknown Channel"
-
         async with aiohttp.ClientSession() as session, session.get(thumbnail) as resp:
             if resp.status == 200:
                 f = await aiofiles.open(f"assets/thumb{foto}.png", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
-
         youtube = Image.open(f"assets/thumb{foto}.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
@@ -102,7 +94,6 @@ async def gen_thumb(foto, status):
                     stroke_fill="white",
                     font=font,
                 )
-
         draw.text(
             (600, 450),
             f"Ditonton : {views}",

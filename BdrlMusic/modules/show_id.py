@@ -10,14 +10,12 @@ from BdrlMusic.utils.get_file_id import get_file_id
 @ubot.on_message(filters.command(["id"], PREFIXES))
 async def showid(client, message):
     chat_type = message.chat.type
-
     if chat_type == ChatType.PRIVATE:
         user_id = message.chat.id
         await message.reply_text(
             f"<b>ID {message.from_user.first_name} Adalah:</b> <code>{user_id}</code>",
             quote=True,
         )
-
     elif chat_type in [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL]:
         _id = ""
         _id += (

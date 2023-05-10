@@ -23,27 +23,22 @@ async def aexec(code, client, message):
 async def _(client, message: Message):
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
-
     reply_to_ = message
     if message.reply_to_message:
         reply_to_ = message.reply_to_message
-
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = StringIO()
     redirected_error = sys.stderr = StringIO()
     stdout, stderr, exc = None, None, None
-
     try:
         await aexec(cmd, client, message)
     except Exception:
         exc = traceback.format_exc()
-
     stdout = redirected_output.getvalue()
     stderr = redirected_error.getvalue()
     sys.stdout = old_stdout
     sys.stderr = old_stderr
-
     evaluation = ""
     if exc:
         evaluation = exc
@@ -53,12 +48,10 @@ async def _(client, message: Message):
         evaluation = stdout
     else:
         evaluation = "Success"
-
     final_output = "<b>EVAL</b>: "
     final_output += f"<code>{cmd}</code>\n\n"
     final_output += "<b>OUTPUT</b>:\n"
     final_output += f"<code>{evaluation.strip()}</code> \n"
-
     if len(final_output) > 4096:
         with BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"

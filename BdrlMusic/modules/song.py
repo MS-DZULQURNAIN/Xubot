@@ -120,7 +120,6 @@ async def owo(client, q):
     caption = f"""
 <b>🏷 Nama:</b> {title}
 <b>🧭 Durasi:</b> {duration}
-
 <b>Pilih Metode Download</b>
 """
     results.append(

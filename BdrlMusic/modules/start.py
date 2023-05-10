@@ -169,7 +169,6 @@ async def _(_, message: Message):
             caption=f"""
 <b>🏷 Nama:</b> {title}
 <b>🧭 Durasi:</b> {duration}
-
 <b>Pilih Metode Download</b>
 """,
             reply_markup=InlineKeyboardMarkup(

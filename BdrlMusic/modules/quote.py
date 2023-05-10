@@ -20,7 +20,6 @@ arq = ARQ("arq.hamker.dev", "ZCHJFR-MWTULN-FVQPSZ-YNIABJ-ARQ", aiohttpsession)
 def split_limits(text):
     if len(text) < 2048:
         return [text]
-
     lines = text.splitlines(True)
     small_msg = ""
     result = []
@@ -32,7 +31,6 @@ def split_limits(text):
             small_msg = line
     else:
         result.append(small_msg)
-
     return result
 
 
@@ -98,7 +96,6 @@ async def _(client, message):
     m = await message.reply_text("`Membuat kutipan Pesan...`")
     if len(message.command) < 2:
         messages = [message.reply_to_message]
-
     elif len(message.command) == 2:
         arg = isArgInt(message)
         if arg[0]:
