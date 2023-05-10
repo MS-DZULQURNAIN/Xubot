@@ -17,10 +17,10 @@ jobs:
           pip freeze > github-action.txt
       - name: Auto Fix
         run: |
-          find . -type f -not -path "./venv/*" -exec sed -i '/^\s*$/d' {} \;
           black --exclude=venv .
           isort --skip-glob='**/venv/**' .
           autoflake --in-place --recursive --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports .
+          sed -i '/^\s*$/d' github-action.txt
       - name: Code Analysis
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
