@@ -1,22 +1,28 @@
 name: Auto Fix
 on: [push]
 jobs:
-  auto_fix_by_tomi_setiawan:
+  python-auto-fix:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Setup Python
         uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
       - name: Install Dependencies
         run: |
-          pip install --upgrade pip
-          pip install black isort
+          python -m pip install --upgrade pip
+          pip install black isort autoflake
+          pip freeze > github-action.txt
       - name: Auto Fix
         run: |
-          black .
-          isort .
+          find . -type f -not -path "./venv/*" -exec sed -i '/^\s*$/d' {} \;
+          black --exclude=venv .
+          isort --skip-glob='**/venv/**' .
+          autoflake --in-place --recursive --remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports .
       - name: Code Analysis
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto Fix"
+          commit_options: "--no-verify"
